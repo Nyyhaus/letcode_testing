@@ -14,11 +14,11 @@ Valid Inputs
   
 *** Keywords ***
 Go To Button Page
-  Go To     ${BUTTON URL}
+  Go To               ${BUTTON URL}
   Button Page Should Be Open
 
 Button Page Should Be Open
-  Title Should Be    Interact with Button fields
+  Title Should Be     Interact with Button fields
 
 Click Home Button And Go Back
   Click Button        home
@@ -27,16 +27,16 @@ Click Home Button And Go Back
 Find Button Coordinates
   ${button horizontal}  Get Horizontal Position   position
   ${button vertical}    Get Vertical Position     position
-  Log To Console    ${button horizontal} ${button vertical}
+  Log To Console        ${button horizontal} ${button vertical}
 
 Get Button Color
   Click Button    color
-  ${elem}     Get Webelement    css=.button.is-primary
-  ${btn color}   Call Method    ${elem}   value_of_css_property   background-color 
+  ${elem}         Get Webelement    css=.button.is-primary
+  ${btn color}    Call Method       ${elem}   value_of_css_property   background-color 
   Log To Console  ${btn color}
 
 Get Button Size
-  ${btn size}   Get Element Size  property
+  ${btn size}     Get Element Size  property
   Log To Console  ${btn size}
 
 Confirm Button Is Disabled
@@ -45,4 +45,4 @@ Confirm Button Is Disabled
 Click And Hold Button
   Mouse Down    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1) 
   Wait Until Page Contains    Button has been long pressed  timeout=5s 
-  Mouse Up    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)
+  Mouse Up      css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)
