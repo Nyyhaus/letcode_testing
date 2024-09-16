@@ -1,6 +1,6 @@
 *** Settings *** 
 Documentation     A resource file with reusable variables.
-Library           SeleniumLibrary
+Library           SeleniumLibrary     run_on_failure=None
 
 *** Variables ***
 ${URL}            https://letcode.in
