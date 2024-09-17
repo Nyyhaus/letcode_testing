@@ -1,8 +1,6 @@
 *** Settings ***
 Documentation     Validating radio buttons and checkboxes.
 Resource          resource.resource
-Test Setup        Open Browser To Letcode Workspace Page
-Test Teardown     Close Browser
 
 *** Test Cases ***
 Valid Checkboxes And Radios
@@ -11,7 +9,9 @@ Valid Checkboxes And Radios
   Confirm you can select only one radio button
   Find the bug
   Find which one is selected
+  Confirm last field is disabled
   Find if the checkbox is selected?
+  Accept the T&C
 
 *** Keywords ***
 Go To Radio Page
@@ -50,5 +50,11 @@ Find which one is selected
   ${checked}  Execute Javascript  return document.getElementById('notfoo').checked;
   Log To Console    \n${checked}
 
-Find if the checkbox is selected?
+Confirm last field is disabled
+  Element Should Be Disabled    maybe
 
+Find if the checkbox is selected?
+  Checkbox Should Be Selected   xpath:/html/body/app-root/app-radio-check/section[1]/div/div/div[1]/div/div/div[6]/label[2]/input
+
+Accept the T&C
+  Select Checkbox     xpath:/html/body/app-root/app-radio-check/section[1]/div/div/div[1]/div/div/div[7]/label[2]/input
