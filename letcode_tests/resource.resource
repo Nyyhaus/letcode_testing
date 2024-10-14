@@ -8,7 +8,7 @@ ${WORKSPACE URL}  ${URL}/test
 ${INPUT URL}      ${URL}/edit 
 ${BUTTON URL}     ${URL}/buttons
 ${BROWSER}        firefox 
-${DELAY}          0
+${DELAY}          0.2
 
 *** Keywords ***
 Open Browser To Letcode Workspace Page

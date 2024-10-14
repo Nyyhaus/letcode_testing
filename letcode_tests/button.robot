@@ -1,7 +1,9 @@
 *** Settings ***
 Documentation     Validating different buttons.
 Resource          resource.resource
-  
+#Test Setup        Open Browser To Letcode Workspace Page
+#Test Teardown     Close Browser
+
 *** Test Cases ***
 Valid Inputs
   Go To Button Page
@@ -44,5 +46,5 @@ Confirm Button Is Disabled
 
 Click And Hold Button
   Mouse Down    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1) 
-  Wait Until Page Contains    Button has been long pressed  timeout=5s 
+  Wait Until Page Contains    Button has been long pressed    timeout=5s 
   Mouse Up      css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)
