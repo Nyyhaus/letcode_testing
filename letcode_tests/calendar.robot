@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation     Test calendar functions.
 Resource          resource.resource
-#Test Setup        Open Browser To Letcode Workspace Page
-#Test Teardown     Close Browser
+Test Setup        Open Browser To Letcode Workspace Page
+Test Teardown     Close Browser
 Library           DateTime
 
 *** Test Cases ***
@@ -36,15 +36,12 @@ Select previous 20 & next 10 days
   ${next_10_day}      Get Current Date    increment=10 days     result_format=%d
   ${next_10_month}    Get Current Date    increment=10 days     result_format=%b
   Click Element       css:.is-datetimepicker-range
-  Click Element       //div[@class="datepicker-nav-month"][last()]
-  Click Element       //div[@class="datepicker-nav-month"][last()]
-  Click Element       //div[text()="${prev_20_month}"][last()]
-  Click Element       //button[text()="${prev_20_day}"][last()]
-  Click Element       //button[text()="Close"]
+  Click Element       //div[@class='datepicker is-active']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
+  Click Element       //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${prev_20_month}')]
+  Click Element       //div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${prev_20_day}')]
+  Click Element       //div[@class='datetimepicker is-primary is-datetimepicker-default is-active']//div[@class='datetimepicker-footer']//button[@type='button'][contains(text(),'Close')]
 
   Click Element       css:input.datetimepicker-dummy-input:nth-child(2)
-  Click Element       //div[@class="datepicker-nav-month"][last()]
-  Click Element       //div[@class="datepicker-nav-month"][last()]
-  Click Element       //div[text()="${next_10_month}"][last()]
-  Click Element       //button[text()="${next_10_day}"][last()]
-
+  Click Element       //div[@class='datepicker is-active']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
+  Click Element       //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_10_month}')]
+  Click Element       //div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_10_day}')]
