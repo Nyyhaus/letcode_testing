@@ -6,20 +6,20 @@ Library           Collections
 #Test Teardown     Close Browser
 
 *** Test Cases ***
-Test Shopping List
+Test Shopping And Presence Tables
   Go To Table Page
   Get All Prices From Table
   Mark Raj As Present
 Test Table Sorting
   Go To Table Page
-  Check If Sorting Works Properly
+  Create List Of Carbs Before Sorting
 
 *** Keywords ***
 Go To Table Page
   Go To       https://letcode.in/table
 
 Get All Prices From Table
-  ${row count}    Get Table Row Count
+  ${row count}    Get Table Row Count     shopping
   ${prices}=      Create List
   FOR   ${index}    IN RANGE    2   ${row count}+2
     ${price}   Get Table Cell    shopping    ${index}   2
@@ -43,15 +43,21 @@ Check If The Sum Matches
   Should Be Equal       ${total}              ${table total}
 
 Get Table Row Count
-  #${row count}    Execute Javascript
-  #...     return document.getElementById("shopping").rows.length;
-  ${rows}   Get Element Count     //table[@id="shopping"]/tbody/tr[position()]
+  [Arguments]     ${table_id}
+  ${rows}   Get Element Count     //table[@id="${table_id}"]/tbody/tr[position()]
   RETURN    ${rows}
 
 Mark Raj As Present
-  Select Checkbox       second
+  ${rows}       Get Table Row Count     simpletable
 
-Check If Sorting Works Properly
+  FOR   ${i}    IN RANGE    1   ${rows}+1 
+      ${name}     Get Text    //table[@id="simpletable"]/tbody/tr[${i}]/td[2]
+      IF    $name == "Raj"
+          Select Checkbox       second
+      END
+  END
+
+Create List Of Carbs Before Sorting
   ${row count}    Execute Javascript
   ...     return document.querySelector(".mat-sort").rows.length;
   ${before sorting}     Create List
@@ -60,8 +66,10 @@ Check If Sorting Works Properly
       Append To List    ${before sorting}     ${value}
   END
   Sort List         ${before sorting}
+  Compare Carbs After Sorting     ${before sorting}     ${row count}
 
-  # Sorting the values in the table and then checking them
+Compare Carbs After Sorting   
+  [Arguments]       ${before sorting}     ${row count}
   Click Element     //div[text()='Carbs (g)']
 
   ${after sorting}     Create List
