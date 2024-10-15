@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation     Test calendar functions.
 Resource          resource.resource
-Test Setup        Open Browser To Letcode Workspace Page
-Test Teardown     Close Browser
+#Test Setup        Open Browser To Letcode Workspace Page
+#Test Teardown     Close Browser
 Library           DateTime
 
 *** Test Cases ***
