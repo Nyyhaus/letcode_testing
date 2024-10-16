@@ -1,21 +1,24 @@
-*** Settings *** 
-Documentation     A resource file with reusable variables.
-Library           SeleniumLibrary     run_on_failure=None
+*** Settings ***
+Documentation       A resource file with reusable variables.
+
+Library             SeleniumLibrary    run_on_failure=None
+
 
 *** Variables ***
-${URL}            https://letcode.in
-${WORKSPACE URL}  ${URL}/test
-${INPUT URL}      ${URL}/edit 
-${BUTTON URL}     ${URL}/buttons
-${BROWSER}        firefox 
-${DELAY}          0.2
+${URL}              https://letcode.in
+${WORKSPACE URL}    ${URL}/test
+${INPUT URL}        ${URL}/edit
+${BUTTON URL}       ${URL}/buttons
+${BROWSER}          firefox
+${DELAY}            0.2
+
 
 *** Keywords ***
 Open Browser To Letcode Workspace Page
-  Open Browser    ${WORKSPACE URL}    ${BROWSER}
-  Maximize Browser Window
-  Set Selenium Speed    ${DELAY}
-  Workspace Page Should Be Open
+    Open Browser    ${WORKSPACE URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Workspace Page Should Be Open
 
 Workspace Page Should Be Open
-  Title Should Be   LetCode - Testing Hub 
+    Title Should Be    LetCode - Testing Hub

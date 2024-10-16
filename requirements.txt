@@ -1,1 +1,3 @@
 robotframework-seleniumlibrary
+robotframework
+robotframework-tidy

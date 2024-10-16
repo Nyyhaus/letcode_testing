@@ -1,5 +1,7 @@
 Include
+results
 Lib
 output
 Scripts
 pyvenv.cfg
+.vscode
