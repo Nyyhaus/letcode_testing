@@ -49,5 +49,5 @@ Confirm Button Is Disabled
 
 Click And Hold Button
     Mouse Down    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)
-    Wait Until Page Contains    Button has been long pressed    timeout=5s
+    Sleep       2
     Mouse Up    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)

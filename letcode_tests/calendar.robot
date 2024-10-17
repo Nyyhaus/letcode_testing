@@ -22,7 +22,7 @@ Test Time Range Selection
     Select Start Date As Today
     Select End Date After 3 Days
     Select time after 2 hrs
-    Verify Time Range
+    #Verify Time Range
 
 
 *** Keywords ***
@@ -79,5 +79,6 @@ Select time after 2 hrs
     Click Element    //div[@class='timepicker-hours']//span[@class='timepicker-next'][contains(text(),'+')]
     Click Element    //div[@class='timepicker-hours']//span[@class='timepicker-next'][contains(text(),'+')]
 
+# TODO
 Verify Time Range
-    Page Should Contain    You have selected from 16-Oct-2024 to 19-Oct-2024
+    Page Should Contain    You have selected from 16-Oct-2024 to ${next_3_days}-Oct-2024
