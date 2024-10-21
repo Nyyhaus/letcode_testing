@@ -5,7 +5,7 @@ Resource            resource.resource
 Library             DateTime
 
 #Test Setup          Open Browser To Letcode Workspace Page
-#Test Teardown       Close Browser
+Test Teardown       Close Browser
 
 
 *** Test Cases ***
@@ -21,8 +21,8 @@ Test Time Range Selection
     Go To Calendar Page
     Select Start Date As Today
     Select End Date After 3 Days
-    Select time after 2 hrs
-    #Verify Time Range
+    Select Time After 2 Hours
+    Verify Time Range
 
 
 *** Keywords ***
@@ -51,7 +51,7 @@ Select Previous 20 Days As Start Date
     Click Element
     ...    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${prev_20_month}')]
     Click Element
-    ...    //div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${prev_20_day}')]
+    ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${prev_20_day}')]
     Sleep    2
 
 Select Next 10 Days As End Date
@@ -62,8 +62,7 @@ Select Next 10 Days As End Date
     Click Element
     ...    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_10_month}')]
     Click Element
-    ...    //div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_10_day}')]
-    Sleep    2
+    ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_10_day}')]
 
 Select Start Date As Today
     Click Element    css:.is-datetimepicker-range
@@ -73,12 +72,13 @@ Select Start Date As Today
 Select End Date After 3 Days
     ${next_3_days}    Get Current Date    increment=3 days    result_format=%d
     Click Element
-    ...    //div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_3_days}')]
+    ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_3_days}')]
 
-Select time after 2 hrs
+Select Time After 2 Hours
     Click Element    //div[@class='timepicker-hours']//span[@class='timepicker-next'][contains(text(),'+')]
     Click Element    //div[@class='timepicker-hours']//span[@class='timepicker-next'][contains(text(),'+')]
 
-# TODO
 Verify Time Range
-    Page Should Contain    You have selected from 16-Oct-2024 to ${next_3_days}-Oct-2024
+    ${today date}         Get Current Date      result_format=%d-%b-%Y 
+    ${next_3_days}        Get Current Date    increment=3 days    result_format=%d-%b-%Y
+    Page Should Contain    You have selected from ${today date} to ${next_3_days}

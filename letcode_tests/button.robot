@@ -49,5 +49,5 @@ Confirm Button Is Disabled
 
 Click And Hold Button
     Mouse Down    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)
-    Sleep       2
+    Sleep    2
     Mouse Up    css:div.field:nth-child(6) > div:nth-child(2) > button:nth-child(1)

@@ -9,9 +9,10 @@ ${URL}              https://letcode.in
 ${WORKSPACE URL}    ${URL}/test
 ${INPUT URL}        ${URL}/edit
 ${BUTTON URL}       ${URL}/buttons
-${BROWSER}          headlessfirefox
-#${BROWSER}          firefox     
-${DELAY}            0
+# ${BROWSER}    headlessfirefox
+# ${BROWSER}    firefox
+${BROWSER}          chrome
+${DELAY}            0.3
 
 
 *** Keywords ***
