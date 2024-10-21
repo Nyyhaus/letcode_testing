@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       A resource file with reusable variables.
 
-Library             SeleniumLibrary    run_on_failure=None
+Library             SeleniumLibrary    
 
 
 *** Variables ***
@@ -9,9 +9,10 @@ ${URL}              https://letcode.in
 ${WORKSPACE URL}    ${URL}/test
 ${INPUT URL}        ${URL}/edit
 ${BUTTON URL}       ${URL}/buttons
-# ${BROWSER}    headlessfirefox
-# ${BROWSER}    firefox
-${BROWSER}          chrome
+# ${BROWSER}        headlessfirefox
+${BROWSER}          firefox
+#${BROWSER}          chrome
+# ${BROWSER}        headlesschrome
 ${DELAY}            0.3
 
 

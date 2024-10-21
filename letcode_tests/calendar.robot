@@ -4,7 +4,7 @@ Documentation       Test calendar functions.
 Resource            resource.resource
 Library             DateTime
 
-#Test Setup          Open Browser To Letcode Workspace Page
+Test Setup          Open Browser To Letcode Workspace Page
 Test Teardown       Close Browser
 
 
@@ -30,39 +30,53 @@ Go To Calendar Page
     Go To    https://letcode.in/calendar
 
 Select Today Date
-    Click Button    //button[text()="Today"]
+    Click Button    //div[@class='datetimepicker is-danger is-active']//div[@class='datetimepicker-footer']//button[@type='button'][contains(text(),'Today')]
 
 Select Week Later Date
-    ${yyyy}    ${mm}    ${dd}    Get Time    year,month,day
-    ${week_later}    Evaluate    ${dd}+7
-    Click Button    //button[text()=${week_later}]
+    ${week_later}   Get Current date    increment=7 days   result_format=%d
+    Click Button    //div[@class='datepicker']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${week_later}')]
 
 Select Month Later Date
     ${next_month}    Get Current Date    increment=30 days    result_format=%b
-    Click Element    //div[@class="datepicker-nav-month"]
-    Click Element    //div[text()="${next_month}"]
+    Click Element    //div[@class='datetimepicker is-danger is-active']//div[@class='datetimepicker-container']//div[@class='datepicker']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
+    Click Element    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_month}')]
 
 Select Previous 20 Days As Start Date
     ${prev_20_day}    Get Current Date    increment=-20 days    result_format=%d
     ${prev_20_month}    Get Current Date    increment=-20 days    result_format=%b
+    ${this_month}    Get Current Date    result_format=%b
+
+    ${prev_20_day}     Convert To Integer    ${prev_20_day}
+    
     Click Element    css:.is-datetimepicker-range
-    Click Element
-    ...    //div[@class='datepicker is-active']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
-    Click Element
-    ...    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${prev_20_month}')]
-    Click Element
-    ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${prev_20_day}')]
+    IF    $prev_20_month==$this_month 
+        Click Element
+    ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][text()='${prev_20_day}']
+    ELSE 
+        Click Element
+        ...    //div[@class='datepicker is-active']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
+        Click Element
+        ...    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${prev_20_month}')]
+        Click Element
+        ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${prev_20_day}')]
+
+    END
     Sleep    2
 
 Select Next 10 Days As End Date
     ${next_10_day}    Get Current Date    increment=10 days    result_format=%d
     ${next_10_month}    Get Current Date    increment=10 days    result_format=%b
-    Click Element
-    ...    //div[@class='datepicker is-active']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
-    Click Element
-    ...    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_10_month}')]
-    Click Element
+    ${this_month}    Get Current Date    result_format=%b
+    IF    $next_10_month==$this_month 
+        Click Element
     ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_10_day}')]
+    ELSE 
+        Click Element
+        ...    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_10_month}')]
+        Click Element
+        ...    //div[@class='datepicker is-active']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${next_10_day}')]
+
+    END   
 
 Select Start Date As Today
     Click Element    css:.is-datetimepicker-range
