@@ -30,16 +30,20 @@ Go To Calendar Page
     Go To    https://letcode.in/calendar
 
 Select Today Date
-    Click Button    //div[@class='datetimepicker is-danger is-active']//div[@class='datetimepicker-footer']//button[@type='button'][contains(text(),'Today')]
+    Click Button    
+    ...   //div[@class='datetimepicker is-danger is-active']//div[@class='datetimepicker-footer']//button[@type='button'][contains(text(),'Today')]
 
 Select Week Later Date
     ${week_later}   Get Current date    increment=7 days   result_format=%d
-    Click Button    //div[@class='datepicker']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${week_later}')]
+    Click Button    
+    ...   //div[@class='datepicker']//div[@class='datepicker-body']//div[@class='datepicker-dates is-active']//div[@class='datepicker-days']//div[@class='datepicker-date is-current-month']//button[@type='button'][contains(text(),'${week_later}')]
 
 Select Month Later Date
     ${next_month}    Get Current Date    increment=30 days    result_format=%b
-    Click Element    //div[@class='datetimepicker is-danger is-active']//div[@class='datetimepicker-container']//div[@class='datepicker']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
-    Click Element    //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_month}')]
+    Click Element    
+    ...   //div[@class='datetimepicker is-danger is-active']//div[@class='datetimepicker-container']//div[@class='datepicker']//div[@class='datepicker-nav']//div[@class='datepicker-nav-month-year']//div[@class='datepicker-nav-month']
+    Click Element    
+    ...   //div[@class='datepicker-months is-active']//div[@class='datepicker-month'][contains(text(),'${next_month}')]
 
 Select Previous 20 Days As Start Date
     ${prev_20_day}    Get Current Date    increment=-20 days    result_format=%d

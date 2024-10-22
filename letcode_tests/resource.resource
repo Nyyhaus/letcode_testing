@@ -10,10 +10,10 @@ ${WORKSPACE URL}    ${URL}/test
 ${INPUT URL}        ${URL}/edit
 ${BUTTON URL}       ${URL}/buttons
 # ${BROWSER}        headlessfirefox
-${BROWSER}          firefox
-#${BROWSER}          chrome
+#${BROWSER}          firefox
+${BROWSER}          chrome
 # ${BROWSER}        headlesschrome
-${DELAY}            0.3
+${DELAY}            0
 
 
 *** Keywords ***

@@ -1,13 +1,13 @@
-# use of the libraries in the tasks requires python 3.10
+# using archlinux because it is lightweight and easy to install latest neovim
 FROM archlinux
 
-# copy robot files to container
+# copy robot files and dependencies recipe to container
 COPY letcode_tests letcode_tests
 COPY requirements.txt .
 
-# Update system and install firefox-esr, because regular firefox cannot be installed straightforward
+# update system and install firefox and pip
 RUN pacman --noconfirm -Syu firefox python-pip
 
-# Install Python dependencies
+# Install project dependencies
 RUN pip install --no-cache-dir --break-system-packages -r requirements.txt
 
